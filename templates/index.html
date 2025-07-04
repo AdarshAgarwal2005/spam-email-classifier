@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 150px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .prediction-result {
+            margin-top: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745; /* Green for success */
+        }
+        .prediction-result.spam {
+            color: #dc3545; /* Red for spam */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Email Detector</h1>
+        <p>Paste your email content below to check if it's spam or not.</p>
+        <form action="/predict" method="post">
+            <textarea name="email_content" placeholder="Enter email content here..." required>{{ email_content if email_content else '' }}</textarea>
+            <button type="submit">Predict</button>
+        </form>
+        {% if prediction_text %}
+            <p class="prediction-result {% if 'SPAM' in prediction_text %}spam{% endif %}">
+                {{ prediction_text }}
+            </p>
+        {% endif %}
+        <p style="margin-top: 30px; font-size: 14px; color: #666;">
+            Developed with Python Flask and Machine Learning
+        </p>
+    </div>
+</body>
+</html>

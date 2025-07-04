@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/  # <--- This is important for your .venv folder
+*.egg
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints
+.pytest_cache/
+
+# PyCharm
+.idea/ # <--- This is important for PyCharm's internal files
+*.iml
+*.ipr
+*.iws
